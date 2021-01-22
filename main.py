@@ -58,7 +58,7 @@ def authenticate(session, user, password):
                      {'appid': 'portal2017', 'userName': user, 'password': password,
                       'redirUrl': 'https://portal.pku.edu.cn/portal2017/ssoLogin.do'})
 
-    token = json.loads(r.text)['token']
+    token = json.loads(r.text).get('token')
     _rand = random.random()
 
     r = session.get('https://portal.pku.edu.cn/portal2017/ssoLogin.do', params={'_rand': _rand, 'token': token})
@@ -96,11 +96,11 @@ def main():
     else:
         desp = '战"疫"成功！'
     finally:
-        requests.post('https://sc.ftqq.com/{}.send'.format(SCKEY), data={
-            'text': '云战"疫"填报结果 {}'.format(time.strftime("%Y/%m/%d", time.localtime())),
-            'desp': desp
-        })
-
+        if SCKEY:
+            requests.post('https://sc.ftqq.com/{}.send'.format(SCKEY), data={
+                'text': '云战"疫"填报结果 {}'.format(time.strftime("%Y/%m/%d", time.localtime())),
+                'desp': desp
+            })
 
 if __name__ == '__main__':
     main()
