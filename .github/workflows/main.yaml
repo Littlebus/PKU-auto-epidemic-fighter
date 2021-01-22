@@ -25,5 +25,7 @@ jobs:
         with:
           python-version: '3.x'
           architecture: 'x64'
+      - name: install requests
+        run: pip install requests
       - name: GOGOGO
         run: python main.py
