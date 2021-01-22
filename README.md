@@ -39,7 +39,7 @@ PKU自动云战"疫"小工具，使用了Python3.8 + `requests`库，结合Githu
 ```
 git clone https://github.com/Littlebus/PKU-auto-epidemic-fighter.git
 cd PKU-auto-epidemic-fighter/
-python main.py -u [你的学号] -p [你的密码] -f [刚才得到的FORM数据] [-k server酱sckey]
+python main.py -u [你的学号] -p [你的密码] -f [刚才得到的FORM数据]
 ```
 
 ### Github Actions
