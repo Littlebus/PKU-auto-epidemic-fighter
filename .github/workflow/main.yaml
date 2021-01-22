@@ -1,0 +1,29 @@
+name: PKU-auto-epidemic-fighter
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+  watch:
+    types: started
+
+env:
+  USER: ${{ secrets.USER }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+  FORM: ${{ secrets.FORM }}
+  SCKEY: ${{ secrets.SCKEY }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v2
+      - name: Install python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: GOGOGO
+        run: python main.py
