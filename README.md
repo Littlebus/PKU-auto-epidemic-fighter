@@ -1,5 +1,9 @@
 # PKU自动云战"疫"
 
+**UPDATE 2021/01/23**
+目前存在一些bug，在windows和ubuntu上表现不同，经测试windows上可用。
+
+------
 PKU自动云战"疫"小工具，使用了python自带的`requests`库，结合Github Action与Server酱，辅导员再也不用担心我漏填了~
 
 ## 内容列表
