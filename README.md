@@ -1,10 +1,6 @@
 # PKU自动云战"疫"
 
-**UPDATE 2021/01/23**
-目前存在一些bug，在windows和ubuntu上表现不同，经测试windows上可用。
-
-------
-PKU自动云战"疫"小工具，使用了python自带的`requests`库，结合Github Action与Server酱，辅导员再也不用担心我漏填了~
+PKU自动云战"疫"小工具，使用了Python3.8 + `requests`库，结合Github Action与Server酱，辅导员再也不用担心我漏填了~
 
 ## 内容列表
 
@@ -16,15 +12,15 @@ PKU自动云战"疫"小工具，使用了python自带的`requests`库，结合Gi
 
 ## 说明
 
-* 本工具采用 Python3 并使用了系统自带库`requests`进行。
+* 本工具采用 Python3.8 并使用了`requests`库进行。
 * 本想采用`selenium`的方式进行模拟，但是觉得selenium速度太慢，占用资源大，且不够优雅。经过对网站的解析后得到了以下方法（没有反爬就很爽）。
 * 支持所有系统（毕竟只用了`requests`）。
-* 运行贼快，综合只需要2秒不到。
+* 运行贼快，Github Actions从构建到运行结束只需要30秒左右。
 * 喜欢可以点个`Star`?
 
 ## 安装
 
-这个项目使用 Python3，并未使用三方库。请确保你本地安装了 Python。
+这个项目使用 Python3.8 和 `requests`。请确保你本地安装了 Python3.8 以及 `requests`。
 
 ## 使用说明
 
@@ -32,15 +28,17 @@ PKU自动云战"疫"小工具，使用了python自带的`requests`库，结合Gi
 * 使用前需手动进入云战役填写一次：
   1. 在云战"疫"页面，将需要填写的信息填写完成，点击保存。
   2. 输入`ctrl+shift+i`进入开发者工具。
-  3. 在开发者工具的`Console`一栏中输入`copy(JSON.stringify({xh: app.basicInfoForm.xh,sfhx: app.dailyInfoForm.sfhx,hxsj: app.dailyInfoForm.hxsj,cfdssm: app.dailyInfoForm.cfdssm,cfddjsm: app.dailyInfoForm.cfddjsm,cfdxjsm: app.dailyInfoForm.cfdxjsm,dqszdxxdz: app.dailyInfoForm.dqszdxxdz,dqszdsm: app.dailyInfoForm.dqszdsm,dqszddjsm: app.dailyInfoForm.dqszddjsm,dqszdxjsm: app.dailyInfoForm.dqszdxjsm,dqszdgbm: app.dailyInfoForm.dqszdgbm,sflsss: app.dailyInfoForm.sflsss,jrtw: app.dailyInfoForm.jrtw,sfczzz: app.dailyInfoForm.sfczzz,jqxdgj: app.dailyInfoForm.jqxdgj,qtqksm: app.dailyInfoForm.qtqksm,tbrq: app.dailyInfoForm.tbrq,yqzd: app.dailyInfoForm.yqzd,sfcx: app.dailyInfoForm.sfcx,dwdzxx: app.locationInfo,dwjd: app.dwjd,dwwd: app.dwwd,sfdrfj: app.dailyInfoForm.sfdrfj,chdfj: app.dailyInfoForm.chdfj,jkm: '绿码',simstoken: simstoken,sfmjqzbl: app.dailyInfoForm.sfmjqzbl,sfmjmjz: app.dailyInfoForm.sfmjmjz,hsjcjg: app.dailyInfoForm.hsjcjg,jjgcsj: app.dailyInfoForm.jjgcsj,sfzgfxdq: app.dailyInfoForm.sfzgfxdq}).replaceAll("\"", "\"\"\""))`
+  3. 在开发者工具的`Console`一栏中输入:
+  	* windows用戶：`copy(JSON.stringify({xh: app.basicInfoForm.xh,sfhx: app.dailyInfoForm.sfhx,hxsj: app.dailyInfoForm.hxsj,cfdssm: app.dailyInfoForm.cfdssm,cfddjsm: app.dailyInfoForm.cfddjsm,cfdxjsm: app.dailyInfoForm.cfdxjsm,dqszdxxdz: app.dailyInfoForm.dqszdxxdz,dqszdsm: app.dailyInfoForm.dqszdsm,dqszddjsm: app.dailyInfoForm.dqszddjsm,dqszdxjsm: app.dailyInfoForm.dqszdxjsm,dqszdgbm: app.dailyInfoForm.dqszdgbm,sflsss: app.dailyInfoForm.sflsss,jrtw: app.dailyInfoForm.jrtw,sfczzz: app.dailyInfoForm.sfczzz,jqxdgj: app.dailyInfoForm.jqxdgj,qtqksm: app.dailyInfoForm.qtqksm,tbrq: app.dailyInfoForm.tbrq,yqzd: app.dailyInfoForm.yqzd,sfcx: app.dailyInfoForm.sfcx,dwdzxx: app.locationInfo,dwjd: app.dwjd,dwwd: app.dwwd,sfdrfj: app.dailyInfoForm.sfdrfj,chdfj: app.dailyInfoForm.chdfj,jkm: '绿码',simstoken: simstoken,sfmjqzbl: app.dailyInfoForm.sfmjqzbl,sfmjmjz: app.dailyInfoForm.sfmjmjz,hsjcjg: app.dailyInfoForm.hsjcjg,jjgcsj: app.dailyInfoForm.jjgcsj,sfzgfxdq: app.dailyInfoForm.sfzgfxdq}).replaceAll("\"", "\"\"\""))`
+  	* 非windows及Github Actions用戶：`copy("'" + JSON.stringify({xh: app.basicInfoForm.xh,sfhx: app.dailyInfoForm.sfhx,hxsj: app.dailyInfoForm.hxsj,cfdssm: app.dailyInfoForm.cfdssm,cfddjsm: app.dailyInfoForm.cfddjsm,cfdxjsm: app.dailyInfoForm.cfdxjsm,dqszdxxdz: app.dailyInfoForm.dqszdxxdz,dqszdsm: app.dailyInfoForm.dqszdsm,dqszddjsm: app.dailyInfoForm.dqszddjsm,dqszdxjsm: app.dailyInfoForm.dqszdxjsm,dqszdgbm: app.dailyInfoForm.dqszdgbm,sflsss: app.dailyInfoForm.sflsss,jrtw: app.dailyInfoForm.jrtw,sfczzz: app.dailyInfoForm.sfczzz,jqxdgj: app.dailyInfoForm.jqxdgj,qtqksm: app.dailyInfoForm.qtqksm,tbrq: app.dailyInfoForm.tbrq,yqzd: app.dailyInfoForm.yqzd,sfcx: app.dailyInfoForm.sfcx,dwdzxx: app.locationInfo,dwjd: app.dwjd,dwwd: app.dwwd,sfdrfj: app.dailyInfoForm.sfdrfj,chdfj: app.dailyInfoForm.chdfj,jkm: '绿码',simstoken: simstoken,sfmjqzbl: app.dailyInfoForm.sfmjqzbl,sfmjmjz: app.dailyInfoForm.sfmjmjz,hsjcjg: app.dailyInfoForm.hsjcjg,jjgcsj: app.dailyInfoForm.jjgcsj,sfzgfxdq: app.dailyInfoForm.sfzgfxdq}) + "'")`
   4. 此时云战"疫"的FORM数据便保存在了剪贴板中，保存下来，稍后要用。
 
 ### 本地使用
 
 ```
 git clone https://github.com/Littlebus/PKU-auto-epidemic-fighter.git
-cd PKU-auto-epidemic-fighter
-python main.py -u [你的学号] -p [你的密码] -f [刚才得到的FORM数据] [--sckey server酱sckey]
+cd PKU-auto-epidemic-fighter/
+python main.py -u [你的学号] -p [你的密码] -f [刚才得到的FORM数据] [-k server酱sckey]
 ```
 
 ### Github Actions

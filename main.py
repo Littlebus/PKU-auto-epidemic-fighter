@@ -1,6 +1,7 @@
 import argparse
 import functools
 import json
+import os
 import random
 import time
 
@@ -10,8 +11,9 @@ parser = argparse.ArgumentParser("PKU-fight-epidemic")
 parser.add_argument("-u", "--user", type=str, required=True)
 parser.add_argument("-p", "--password", type=str, required=True)
 parser.add_argument("-f", "--form", type=str, required=True)
-parser.add_argument("-k", "--sckey", type=str)
 args = parser.parse_args()
+
+SCKEY = os.getenv('SCKEY')
 
 
 def log(log_type):
@@ -90,11 +92,11 @@ def main():
     else:
         desp = '战"疫"成功！'
     finally:
-        if args.sckey:
-            requests.post('https://sc.ftqq.com/{}.send'.format(args.sckey), data={
-                'text': '云战"疫"填报结果 {}'.format(time.strftime("%Y/%m/%d", time.localtime())),
-                'desp': desp
-            })
+        requests.post('https://sc.ftqq.com/{}.send'.format(SCKEY), data={
+            'text': '云战"疫"填报结果 {}'.format(time.strftime("%Y/%m/%d", time.localtime())),
+            'desp': desp
+        })
+
 
 if __name__ == '__main__':
     main()

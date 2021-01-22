@@ -6,6 +6,8 @@ on:
     - cron: '0 0 * * *'
   watch:
     types: started
+env:
+  SCKEY: ${{ secrets.SCKEY }}
 
 jobs:
   build:
@@ -22,4 +24,4 @@ jobs:
       - name: install requests
         run: pip install requests
       - name: GOGOGO
-        run: python main.py -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }} -f ${{ secrets.FORM }} -k ${{ secrets.SCKEY }}
+        run: python main.py -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }} -f ${{ secrets.FORM }}
