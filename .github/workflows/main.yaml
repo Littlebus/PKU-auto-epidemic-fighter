@@ -7,12 +7,6 @@ on:
   watch:
     types: started
 
-env:
-  USER: ${{ secrets.USER }}
-  PASSWORD: ${{ secrets.PASSWORD }}
-  FORM: ${{ secrets.FORM }}
-  SCKEY: ${{ secrets.SCKEY }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,4 +22,4 @@ jobs:
       - name: install requests
         run: pip install requests
       - name: GOGOGO
-        run: python main.py
+        run: python main.py -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }} -f ${{ secrets.FORM }} -k ${{ secrets.SCKEY }}

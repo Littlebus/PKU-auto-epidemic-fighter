@@ -1,23 +1,17 @@
 import argparse
 import functools
 import json
-import os
 import random
 import time
 
 import requests
 
 parser = argparse.ArgumentParser("PKU-fight-epidemic")
-parser.add_argument("-u", "--user", type=str)
-parser.add_argument("-p", "--password", type=str)
-parser.add_argument("-f", "--form", type=str)
+parser.add_argument("-u", "--user", type=str, required=True)
+parser.add_argument("-p", "--password", type=str, required=True)
+parser.add_argument("-f", "--form", type=str, required=True)
 parser.add_argument("-k", "--sckey", type=str)
 args = parser.parse_args()
-
-USER = args.user if args.user else os.getenv('USER')
-PASSWORD = args.password if args.password else os.getenv('PASSWORD')
-FORM = args.form if args.form else os.getenv('FORM')
-SCKEY = args.sckey if args.sckey else os.getenv('SCKEY')
 
 
 def log(log_type):
@@ -74,9 +68,9 @@ def open_epidemic(session):
 
 # 第四部：表单填写
 @log('填写云战"疫"表单')
-def fill_epidemic_form(session):
+def fill_epidemic_form(session, arg):
     r = session.post('https://ssop.pku.edu.cn/stuAffair/edu/pku/stu/sa/jpf/yqfk/stu/saveMrtb.do',
-                     data=json.loads(FORM))
+                     data=json.loads(arg.form))
     return r.status_code
 
 
@@ -84,9 +78,9 @@ def main():
     try:
         s = requests.Session()
         get_cookie(s)
-        authenticate(s, USER, PASSWORD)
+        authenticate(s, args.user, args.password)
         open_epidemic(s)
-        fill_epidemic_form(s)
+        fill_epidemic_form(s, args)
 
     except TimeoutError as e:
         desp = '由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。'
@@ -96,8 +90,8 @@ def main():
     else:
         desp = '战"疫"成功！'
     finally:
-        if SCKEY:
-            requests.post('https://sc.ftqq.com/{}.send'.format(SCKEY), data={
+        if args.sckey:
+            requests.post('https://sc.ftqq.com/{}.send'.format(args.sckey), data={
                 'text': '云战"疫"填报结果 {}'.format(time.strftime("%Y/%m/%d", time.localtime())),
                 'desp': desp
             })
