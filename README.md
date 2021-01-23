@@ -1,6 +1,6 @@
 # PKU自动云战"疫"
 
-PKU自动云战"疫"小工具，使用了Python3.8 + `requests`库，结合Github Action与Server酱，辅导员再也不用担心我漏填了~
+PKU自动云战"疫"小工具，使用了Python3.8 + `requests`库，结合Github Action与Server酱，每日定时自动提交，微信推送结果，辅导员再也不用担心我漏填了~
 
 ## 内容列表
 
